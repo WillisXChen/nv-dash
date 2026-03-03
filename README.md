@@ -28,6 +28,14 @@
 
 ---
 
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="screenshots/dev-0.0.1/NV-DASH-en_US.webp" alt="NV-Dash English Screenshot" width="800">
+</p>
+
+---
+
 ## ✨ Key Features
 
 *   **CPU Monitoring**: Displays processor model, per-core utilization, temperature, and real-time power draw (RAPL).

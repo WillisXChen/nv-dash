@@ -28,6 +28,14 @@
 
 ---
 
+## 🖼️ 實際畫面
+
+<p align="center">
+  <img src="screenshots/dev-0.0.1/NV-DASH-zh_TW.webp" alt="NV-Dash 繁體中文截圖" width="800">
+</p>
+
+---
+
 ## ✨ 主要功能
 
 *   **CPU 監控**：顯示處理器型號、各核心使用率、溫度以及即時功耗 (RAPL)。
