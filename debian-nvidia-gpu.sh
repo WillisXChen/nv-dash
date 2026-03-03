@@ -229,18 +229,20 @@ while true; do
 
     # --- Interface Rendering ---
     tput cup 0 0
-    echo -e "${BOLD}${CYAN}    _   ___    __   ____             __  ${NC}"
-    echo -e "${BOLD}${CYAN}   / | / / |  / /  / __ \____ ______/ /_ ${NC}"
-    echo -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}"
-    echo -e "${BOLD}${CYAN} / /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}"
-    echo -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}"
-    echo ""
-    echo -e "${BOLD}${YELLOW}$(_ '=== SYSTEM MONITORING DASHBOARD ===')${NC}"
-    echo -e "${CYAN}$(_ 'Motherboard:')${NC} $MB_INFO"
+    CE='\033[K'
+    echo -e "${BOLD}${CYAN}    _   ___    __   ____             __  ${NC}${CE}"
+    echo -e "${BOLD}${CYAN}   / | / / |  / /  / __ \____ ______/ /_ ${NC}${CE}"
+    echo -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}${CE}"
+    echo -e "${BOLD}${CYAN} / /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}${CE}"
+    echo -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}${CE}"
+    echo -e "${CE}"
+    echo -e "${BOLD}${YELLOW}$(_ '=== SYSTEM MONITORING DASHBOARD ===')${NC}${CE}"
+    echo -e "${CYAN}$(_ 'Motherboard:')${NC} $MB_INFO${CE}"
     
     # --- Section 1: CPU Section ---
-    echo -e "\n${BOLD}${WHITE}[ $(_ 'CPU SECTION') ]${NC} -------------------------------------------"
-    echo -e " $(_ 'Model:'): ${CYAN}$CPU_MODEL${NC}"
+    echo -e "${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'CPU SECTION') ]${NC} -------------------------------------------${CE}"
+    echo -e " $(_ 'Model:'): ${CYAN}$CPU_MODEL${NC}${CE}"
     
     all_cpu=$(grep '^cpu ' /proc/stat)
     read -ra all_stats <<< "$all_cpu"
@@ -251,7 +253,7 @@ while true; do
     cpu_all_pct=$(echo "scale=1; 100 * ($diff_all_total - $diff_all_idle) / $diff_all_total" | bc 2>/dev/null || echo "0.0")
     prev_all_total=$all_total; prev_all_idle=$all_idle
 
-    printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%-8s${NC} | $(_ 'Total Usage:'): ${GREEN}%s%%${NC}\n" "$cpu_w" "$cpu_temp" "$cpu_all_pct"
+    printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%-8s${NC} | $(_ 'Total Usage:'): ${GREEN}%s%%${NC}${CE}\n" "$cpu_w" "$cpu_temp" "$cpu_all_pct"
     
     cpu_info=$(grep '^cpu[0-9]' /proc/stat)
     i=0
@@ -262,42 +264,45 @@ while true; do
         cpu_pct=$(echo "scale=1; 100 * ($diff_t - $diff_i) / $diff_t" | bc 2>/dev/null || echo "0.0")
         prev_total[$i]=$total; prev_idle[$i]=$idle
         printf " $(_ 'C')%02d: ${GREEN}%5s%%${NC} " "$i" "$cpu_pct"
-        [[ $(( (i + 1) % 4 )) -eq 0 ]] && echo ""
+        [[ $(( (i + 1) % 4 )) -eq 0 ]] && echo -e "${CE}"
         ((i++))
     done <<< "$cpu_info"
+    [[ $(( i % 4 )) -ne 0 ]] && echo -e "${CE}"
 
     # --- Section 2: GPU Section ---
-    echo -e "\n${BOLD}${WHITE}[ $(_ 'GPU SECTION') ]${NC} -------------------------------------------"
-    echo -e " $(_ 'Model:'): ${CYAN}$GPU_MODEL${NC}"
+    echo -e "${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'GPU SECTION') ]${NC} -------------------------------------------${CE}"
+    echo -e " $(_ 'Model:'): ${CYAN}$GPU_MODEL${NC}${CE}"
     vram_p_val=$(echo "scale=1; if ($vram_t > 0) 100 * $vram_u / $vram_t else 0" | bc 2>/dev/null || echo "0.0")
-    printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%s°C${NC} | $(_ 'Clock:'): ${YELLOW}%s MHz${NC}\n" "$gpu_w" "$gpu_t" "$vram_s"
-    printf " $(_ 'Load (G/D/E):') ${GREEN}%s%% / %s%% / %s%%${NC}\n" "$gpu_u" "$dec_u" "$enc_u"
-    printf " $(_ 'VRAM Usage  :') ${CYAN}%s / %s MB (${vram_p_val}%%)${NC}\n" "$vram_u" "$vram_t"
+    printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%s°C${NC} | $(_ 'Clock:'): ${YELLOW}%s MHz${NC}${CE}\n" "$gpu_w" "$gpu_t" "$vram_s"
+    printf " $(_ 'Load (G/D/E):') ${GREEN}%s%% / %s%% / %s%%${NC}${CE}\n" "$gpu_u" "$dec_u" "$enc_u"
+    printf " $(_ 'VRAM Usage  :') ${CYAN}%s / %s MB (${vram_p_val}%%)${NC}${CE}\n" "$vram_u" "$vram_t"
 
     # --- Section 3: RAM Section ---
-    echo -e "\n${BOLD}${WHITE}[ $(_ 'RAM SECTION') ]${NC} -------------------------------------------"
+    echo -e "${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'RAM SECTION') ]${NC} -------------------------------------------${CE}"
     ram_p_clean=$(echo "scale=1; if ($ram_t > 0) 100 * $ram_u / $ram_t else 0" | bc 2>/dev/null || echo "0.0")
-    printf " $(_ 'Usage Total :') ${CYAN}%s / %s MB (${ram_p_clean}%%)${NC}\n" "$ram_u" "$ram_t"
-    echo -e " $(_ 'Hardware Info:')"
+    printf " $(_ 'Usage Total :') ${CYAN}%s / %s MB (${ram_p_clean}%%)${NC}${CE}\n" "$ram_u" "$ram_t"
+    echo -e " $(_ 'Hardware Info:')${CE}"
     idx=0
     while read -r line; do
         [[ -z "$line" ]] && continue
         brand=$(echo "$line" | awk -F'|' '{print $1}' | xargs)
         size=$(echo "$line" | awk -F'|' '{print $2}' | xargs)
         speed=$(echo "$line" | awk -F'|' '{print $3}' | xargs)
-        printf "  $(_ 'Slot') %d: ${PURPLE}%-10s${NC} ${CYAN}%-6s${NC} ${YELLOW}(%s)${NC}\n" "$idx" "$brand" "$size" "$speed"
+        printf "  $(_ 'Slot') %d: ${PURPLE}%-10s${NC} ${CYAN}%-6s${NC} ${YELLOW}(%s)${NC}${CE}\n" "$idx" "$brand" "$size" "$speed"
         ((idx++))
     done <<< "$RAM_HW_LIST"
 
-    echo "----------------------------------------------------------------"
-    echo -e "${BOLD}${WHITE}${P_L1}${NC}"
-    echo -e "${BOLD}${WHITE}${P_L2}${NC}"
-    echo -e "${BOLD}${YELLOW}${P_L3}${NC}"
-    echo -e "${BOLD}${WHITE}${P_L4}${NC}"
-    echo -e "${BOLD}${WHITE}${P_L5}${NC}"
-    echo -e "${BOLD}${WHITE}${P_L6}${NC}"
-    echo -e "${BOLD}${YELLOW}${P_L7}${NC}"
-    echo "----------------------------------------------------------------"
-    echo -e "${YELLOW}$(_ 'Press [CTRL+C] to exit monitoring')${NC}"
+    echo -e "----------------------------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}${P_L1}${NC}${CE}"
+    echo -e "${BOLD}${WHITE}${P_L2}${NC}${CE}"
+    echo -e "${BOLD}${YELLOW}${P_L3}${NC}${CE}"
+    echo -e "${BOLD}${WHITE}${P_L4}${NC}${CE}"
+    echo -e "${BOLD}${WHITE}${P_L5}${NC}${CE}"
+    echo -e "${BOLD}${WHITE}${P_L6}${NC}${CE}"
+    echo -e "${BOLD}${YELLOW}${P_L7}${NC}${CE}"
+    echo -e "----------------------------------------------------------------${CE}"
+    echo -e "${YELLOW}$(_ 'Press [CTRL+C] to exit monitoring')${NC}${CE}"
     tput ed
 done
