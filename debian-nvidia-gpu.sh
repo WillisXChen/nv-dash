@@ -32,9 +32,23 @@ if [ -n "$1" ]; then
     export LANG="${LANG_OPT}.UTF-8"
 fi
 
-# Translation function (using gettext)
+# Translation function (Custom implementation for environment compatibility)
 _() {
-    gettext "$TEXTDOMAIN" "$1"
+    local text="$1"
+    local base_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+    local po_file="$base_dir/${LANGUAGE:-en_US}.po"
+    
+    # Check if translation exists in the .po file
+    if [[ -f "$po_file" ]]; then
+        # Handle cases where grep might return multiple lines or need trimming
+        local trans=$(grep -A 1 "msgid \"$text\"" "$po_file" | grep "msgstr" | sed 's/msgstr "\(.*\)"/\1/')
+        if [[ -n "$trans" && "$trans" != "" ]]; then
+            echo -e "$trans"
+            return
+        fi
+    fi
+    # Fallback to original text if po_file doesn't exist or translation is missing
+    echo -e "$text"
 }
 
 [[ $EUID -ne 0 ]] && echo "$(_ 'Please run with sudo')" && exit 1
