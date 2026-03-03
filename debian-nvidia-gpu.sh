@@ -96,7 +96,7 @@ for i in {1..3}; do
     sleep 0.1
     echo -n -e "${BOLD}${YELLOW}  / | / / |  / /  / __ \____ ______/ /_ ${NC}\r"
     sleep 0.1
-    echo -n -e "${BOLD}${CYAN} /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}\r"
+    echo -n -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \x5C${NC}\r"
     sleep 0.1
     echo -n -e "${BOLD}${YELLOW}/ /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}\r"
     sleep 0.1
@@ -232,11 +232,11 @@ while true; do
     CE='\033[K'
     echo -e "${BOLD}${CYAN}    _   ___    __   ____             __  ${NC}   ${BOLD}${WHITE}${P_L1}${NC}${CE}"
     echo -e "${BOLD}${CYAN}   / | / / |  / /  / __ \____ ______/ /_ ${NC}   ${BOLD}${WHITE}${P_L2}${NC}${CE}"
-    echo -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}   ${BOLD}${YELLOW}${P_L3}${NC}${CE}"
+    echo -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \x5C${NC}   ${BOLD}${YELLOW}${P_L3}${NC}${CE}"
     echo -e "${BOLD}${CYAN} / /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}   ${BOLD}${WHITE}${P_L4}${NC}${CE}"
     echo -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}   ${BOLD}${WHITE}${P_L5}${NC}${CE}"
-    echo -e "                                             ${BOLD}${WHITE}${P_L6}${NC}${CE}"
-    echo -e "                                             ${BOLD}${YELLOW}${P_L7}${NC}${CE}"
+    echo -e "                                            ${BOLD}${WHITE}${P_L6}${NC}${CE}"
+    echo -e "                                            ${BOLD}${YELLOW}${P_L7}${NC}${CE}"
     echo -e "${BOLD}${YELLOW}$(_ '=== SYSTEM MONITORING DASHBOARD ===')${NC}${CE}"
     echo -e "${CYAN}$(_ 'Motherboard:')${NC} $MB_INFO${CE}"
     
