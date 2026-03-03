@@ -16,8 +16,11 @@ msgstr "=== SYSTEM MONITORING DASHBOARD ==="
 msgid "Motherboard:"
 msgstr "Motherboard:"
 
-msgid "CPU SECTION"
-msgstr "CPU SECTION"
+msgid "OS:"
+msgstr "Operating System:"
+
+msgid "CPU"
+msgstr "CPU"
 
 msgid "Model:"
 msgstr "Model:"
@@ -34,8 +37,8 @@ msgstr "Total Usage:"
 msgid "C"
 msgstr "C"
 
-msgid "GPU SECTION"
-msgstr "GPU SECTION"
+msgid "GPU"
+msgstr "GPU"
 
 msgid "Clock:"
 msgstr "Clock:"
@@ -46,8 +49,8 @@ msgstr "Load (G/D/E):"
 msgid "VRAM Usage  :"
 msgstr "VRAM Usage  :"
 
-msgid "RAM SECTION"
-msgstr "RAM SECTION"
+msgid "RAM"
+msgstr "RAM"
 
 msgid "Usage Total :"
 msgstr "Usage Total :"

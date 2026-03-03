@@ -16,7 +16,10 @@ msgstr "=== システム監視ダッシュボード ==="
 msgid "Motherboard:"
 msgstr "マザーボード:"
 
-msgid "CPU SECTION"
+msgid "OS:"
+msgstr "OS:"
+
+msgid "CPU"
 msgstr "CPU 情報"
 
 msgid "Model:"
@@ -34,7 +37,7 @@ msgstr "全体使用率:"
 msgid "C"
 msgstr "コア"
 
-msgid "GPU SECTION"
+msgid "GPU"
 msgstr "GPU 情報"
 
 msgid "Clock:"
@@ -46,7 +49,7 @@ msgstr "負荷 (G/D/E):"
 msgid "VRAM Usage  :"
 msgstr "VRAM 使用量 :"
 
-msgid "RAM SECTION"
+msgid "RAM"
 msgstr "RAM 情報"
 
 msgid "Usage Total :"

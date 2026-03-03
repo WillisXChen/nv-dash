@@ -16,7 +16,10 @@ msgstr "=== 系統硬體監控儀表板 ==="
 msgid "Motherboard:"
 msgstr "主機板:"
 
-msgid "CPU SECTION"
+msgid "OS:"
+msgstr "作業系統:"
+
+msgid "CPU"
 msgstr "處理器資訊"
 
 msgid "Model:"
@@ -34,7 +37,7 @@ msgstr "總使用率:"
 msgid "C"
 msgstr "核心"
 
-msgid "GPU SECTION"
+msgid "GPU"
 msgstr "顯示卡資訊"
 
 msgid "Clock:"
@@ -46,7 +49,7 @@ msgstr "負載 (圖形/解碼/編碼):"
 msgid "VRAM Usage  :"
 msgstr "記憶體使用量:"
 
-msgid "RAM SECTION"
+msgid "RAM"
 msgstr "記憶體資訊"
 
 msgid "Usage Total :"

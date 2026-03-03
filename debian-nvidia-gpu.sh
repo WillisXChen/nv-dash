@@ -74,6 +74,7 @@ CPU_MODEL=$(lscpu | grep "Model name" | sed 's/Model name:[[:space:]]*//' | xarg
 # Fix GPU model capture: ensure the header row is not captured
 GPU_MODEL=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 MB_INFO=$(dmidecode -t baseboard | grep -E "Manufacturer|Product Name" | awk -F: '{print $2}' | xargs)
+OS_INFO=$(grep "PRETTY_NAME" /etc/os-release | cut -d'=' -f2 | tr -d '"')
 
 # Get RAM hardware list (no limit on quantity)
 RAM_HW_LIST=$(sudo dmidecode -t memory | awk '
@@ -218,6 +219,7 @@ while true; do
     echo -e "                                            ${BOLD}${YELLOW}${P_L7}${NC}${CE}"
     echo -e "${BOLD}${YELLOW}$(_ '=== SYSTEM MONITORING DASHBOARD ===')${NC}${CE}"
     echo -e "${CYAN}$(_ 'Motherboard:')${NC} $MB_INFO${CE}"
+    echo -e "${CYAN}$(_ 'OS:')${NC} $OS_INFO${CE}"
     
     # --- Section 1: CPU Section ---
     echo -e "${CE}"
