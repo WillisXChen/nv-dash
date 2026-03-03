@@ -1,0 +1,62 @@
+# maintainer: Willis Chen <misweyu2007@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: linux_nvidia_gpu\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Please run with sudo"
+msgstr "Please run with sudo"
+
+msgid "=== SYSTEM MONITORING DASHBOARD ==="
+msgstr "=== SYSTEM MONITORING DASHBOARD ==="
+
+msgid "Motherboard:"
+msgstr "Motherboard:"
+
+msgid "CPU SECTION"
+msgstr "CPU SECTION"
+
+msgid "Model:"
+msgstr "Model:"
+
+msgid "Power:"
+msgstr "Power:"
+
+msgid "Temp:"
+msgstr "Temp:"
+
+msgid "Total Usage:"
+msgstr "Total Usage:"
+
+msgid "C"
+msgstr "C"
+
+msgid "GPU SECTION"
+msgstr "GPU SECTION"
+
+msgid "Clock:"
+msgstr "Clock:"
+
+msgid "Load (G/D/E):"
+msgstr "Load (G/D/E):"
+
+msgid "VRAM Usage  :"
+msgstr "VRAM Usage  :"
+
+msgid "RAM SECTION"
+msgstr "RAM SECTION"
+
+msgid "Usage Total :"
+msgstr "Usage Total :"
+
+msgid "Hardware Info:"
+msgstr "Hardware Info:"
+
+msgid "Slot"
+msgstr "Slot"
+
+msgid "Press [CTRL+C] to exit monitoring"
+msgstr "Press [CTRL+C] to exit monitoring"

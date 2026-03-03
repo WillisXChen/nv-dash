@@ -1,0 +1,62 @@
+# maintainer: Willis Chen <misweyu2007@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: linux_nvidia_gpu\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Please run with sudo"
+msgstr "sudo で実行してください"
+
+msgid "=== SYSTEM MONITORING DASHBOARD ==="
+msgstr "=== システム監視ダッシュボード ==="
+
+msgid "Motherboard:"
+msgstr "マザーボード:"
+
+msgid "CPU SECTION"
+msgstr "CPU 情報"
+
+msgid "Model:"
+msgstr "モデル:"
+
+msgid "Power:"
+msgstr "消費電力:"
+
+msgid "Temp:"
+msgstr "温度:"
+
+msgid "Total Usage:"
+msgstr "全体使用率:"
+
+msgid "C"
+msgstr "コア"
+
+msgid "GPU SECTION"
+msgstr "GPU 情報"
+
+msgid "Clock:"
+msgstr "クロック:"
+
+msgid "Load (G/D/E):"
+msgstr "負荷 (G/D/E):"
+
+msgid "VRAM Usage  :"
+msgstr "VRAM 使用量 :"
+
+msgid "RAM SECTION"
+msgstr "RAM 情報"
+
+msgid "Usage Total :"
+msgstr "全体使用量 :"
+
+msgid "Hardware Info:"
+msgstr "ハードウェア情報:"
+
+msgid "Slot"
+msgstr "スロット"
+
+msgid "Press [CTRL+C] to exit monitoring"
+msgstr "監視を終了するには [CTRL+C] を押してください"

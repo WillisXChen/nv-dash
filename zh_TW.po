@@ -1,0 +1,63 @@
+# maintainer: Willis Chen <misweyu2007@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: linux_nvidia_gpu\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Please run with sudo"
+msgstr "請使用 sudo 執行"
+
+msgid "=== SYSTEM MONITORING DASHBOARD ==="
+msgstr "=== 系統硬體監控儀表板 ==="
+
+msgid "Motherboard:"
+msgstr "主機板:"
+
+msgid "CPU SECTION"
+msgstr "處理器資訊"
+
+msgid "Model:"
+msgstr "型號:"
+
+msgid "Power:"
+msgstr "功耗:"
+
+msgid "Temp:"
+msgstr "溫度:"
+
+msgid "Total Usage:"
+msgstr "總使用率:"
+
+msgid "C"
+msgstr "核心"
+
+msgid "GPU SECTION"
+msgstr "顯示卡資訊"
+
+msgid "Clock:"
+msgstr "時脈:"
+
+msgid "Load (G/D/E):"
+msgstr "負載 (圖形/解碼/編碼):"
+
+msgid "VRAM Usage  :"
+msgstr "記憶體使用量:"
+
+msgid "RAM SECTION"
+msgstr "記憶體資訊"
+
+msgid "Usage Total :"
+msgstr "已使用量 :"
+
+msgid "Hardware Info:"
+msgstr "硬體規格:"
+
+msgid "Slot"
+msgstr "插槽"
+
+msgid "Press [CTRL+C] to exit monitoring"
+msgstr "按下 [CTRL+C] 結束監控"
+
