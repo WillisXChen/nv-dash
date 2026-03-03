@@ -17,7 +17,7 @@
 ---
 
 <p align="center">
-  <a href="./README.繁體中文版.md">
+  <a href="./README.zh_TW.md">
     <img src="https://img.shields.io/badge/切換語言-繁體中文-red?style=for-the-badge" alt="繁體中文版">
   </a>
 </p>
@@ -56,24 +56,24 @@
 
 1.  **Grant Execution Permissions**:
     ```bash
-    chmod +x debian-nvidia-gpu.sh
+    chmod +x nv-dash.sh
     ```
 
 2.  **View Help Options**:
     ```bash
-    ./debian-nvidia-gpu.sh -h
+    ./nv-dash.sh -h
     ```
 
 3.  **Run with sudo** (Required for hardware info):
     ```bash
-    sudo ./debian-nvidia-gpu.sh
+    sudo ./nv-dash.sh
     ```
 
 ### Language Selection
 Specify the language parameter during execution:
-- English: `sudo ./debian-nvidia-gpu.sh en`
-- Traditional Chinese: `sudo ./debian-nvidia-gpu.sh zh_TW`
-- Japanese: `sudo ./debian-nvidia-gpu.sh ja`
+- English: `sudo ./nv-dash.sh en`
+- Traditional Chinese: `sudo ./nv-dash.sh zh_TW`
+- Japanese: `sudo ./nv-dash.sh ja`
 
 ---
 
