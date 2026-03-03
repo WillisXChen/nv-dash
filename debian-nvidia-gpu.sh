@@ -3,7 +3,7 @@
 
 # i18n Multilingual setup
 export TEXTDOMAIN="linux_nvidia_gpu"
-export TEXTDOMAINDIR="${PWD}/locale"
+export TEXTDOMAINDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/locale"
 
 # Allow language setting via parameter (supports zh_TW, en_US, ja)
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
