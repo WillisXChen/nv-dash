@@ -131,8 +131,8 @@ while true; do
     cpu_temp=$(sensors 2>/dev/null | grep -E 'Package id 0|Core 0' | awk '{print $4}' | head -n 1 | tr -d '+')
 
     # Hacker Rabbit Animation Logic (Switching frames based on seconds counter)
-    local sec=$(date +%s)
-    local frame=$((sec % 10))
+    sec=$(date +%s)
+    frame=$((sec % 10))
     
     case $frame in
         0)
