@@ -221,7 +221,7 @@ while true; do
     
     # --- Section 1: CPU Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'CPU') ]${NC} -------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'CPU') ]${NC} ${CE}"
     echo -e " $(_ 'Model:'):${CE}"
     while IFS= read -r c_line; do
         [[ -n "$c_line" ]] && echo -e "   ${CYAN}${c_line}${NC}${CE}"
@@ -254,7 +254,7 @@ while true; do
 
     # --- Section 2: GPU Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'GPU') ]${NC} -------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'GPU') ]${NC} ${CE}"
     echo -e " $(_ 'Model:'): ${CYAN}$GPU_MODEL${NC}${CE}"
     vram_p_val=$(echo "scale=1; if ($vram_t > 0) 100 * $vram_u / $vram_t else 0" | bc 2>/dev/null || echo "0.0")
     printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%s°C${NC} | $(_ 'Clock:'): ${YELLOW}%s MHz${NC}${CE}\n" "$gpu_w" "$gpu_t" "$vram_s"
@@ -263,7 +263,7 @@ while true; do
 
     # --- Section 3: RAM Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'RAM') ]${NC} -------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'RAM') ]${NC} ${CE}"
     ram_p_clean=$(echo "scale=1; if ($ram_t > 0) 100 * $ram_u / $ram_t else 0" | bc 2>/dev/null || echo "0.0")
     printf " $(_ 'Usage Total :') ${CYAN}%s / %s MB (${ram_p_clean}%%)${NC}${CE}\n" "$ram_u" "$ram_t"
     echo -e " $(_ 'Hardware Info:')${CE}"
@@ -277,7 +277,7 @@ while true; do
         ((idx++))
     done <<< "$RAM_HW_LIST"
 
-    echo -e "----------------------------------------------------------------${CE}"
+    echo -e "---------------------------------------------------${CE}"
     echo -e "${YELLOW}$(_ 'Press [CTRL+C] to exit monitoring')${NC}${CE}"
     tput ed
 done
