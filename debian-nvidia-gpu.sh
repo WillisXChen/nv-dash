@@ -86,10 +86,32 @@ RAM_HW_LIST=$(sudo dmidecode -t memory | awk '
         }
     }' | sed 's/Manufacturer: //g; s/Size: //g; s/Configured Memory Speed: //g')
 
+# Clear screen before animation
+clear
+
+# Tech-style Startup Animation
+echo -e "${CYAN}Initializing Neural Link...${NC}"
+for i in {1..3}; do
+    echo -n -e "${BOLD}${CYAN}   _   ___    __   ____             __  ${NC}\r"
+    sleep 0.1
+    echo -n -e "${BOLD}${YELLOW}  / | / / |  / /  / __ \____ ______/ /_ ${NC}\r"
+    sleep 0.1
+    echo -n -e "${BOLD}${CYAN} /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}\r"
+    sleep 0.1
+    echo -n -e "${BOLD}${YELLOW}/ /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}\r"
+    sleep 0.1
+    echo -n -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}\r"
+    sleep 0.1
+done
+echo ""
+echo -e "${GREEN}[SYSTEM] Firmware Loaded.${NC}"
+echo -e "${GREEN}[SYSTEM] Core Telemetry Active.${NC}"
+sleep 0.5
+clear
+
 prev_total=(); prev_idle=()
 prev_all_total=0; prev_all_idle=0
 
-clear
 while true; do
     # --- Data Collection ---
     # GPU data (Graphics, Memory, Encoder, Decoder, Temp, Power, Used, Total, Clock)
@@ -108,8 +130,111 @@ while true; do
     # CPU Temp
     cpu_temp=$(sensors 2>/dev/null | grep -E 'Package id 0|Core 0' | awk '{print $4}' | head -n 1 | tr -d '+')
 
+    # Hacker Rabbit Animation Logic (Switching frames based on seconds counter)
+    local sec=$(date +%s)
+    local frame=$((sec % 10))
+    
+    case $frame in
+        0)
+            P_L1='             '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (>.< ) 💦 '
+            P_L5='  c(")_(")   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        1)
+            P_L1='             '
+            P_L2='   ⚡️       '
+            P_L3='   (\__/)    '
+            P_L4='   (0_0 )    '
+            P_L5='   / / / /   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        2)
+            P_L1='             '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (+_+) 💢 '
+            P_L5='  c(")_(")   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        3)
+            P_L1='    ✨       '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (O_O )    '
+            P_L5='  \ \ \ \    '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        4)
+            P_L1='             '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (>_w ) 💡 '
+            P_L5='  c(")_(")   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        5)
+            P_L1='    🎶       '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (^o^ )    '
+            P_L5='   / / / /   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        6)
+            P_L1='             '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (-_- ) ☕️ '
+            P_L5='  c(")_(")   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        7)
+            P_L1='             '
+            P_L2='   🚀       '
+            P_L3='   (\__/)    '
+            P_L4='   ($_$ )    '
+            P_L5='  \ \ \ \    '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        8)
+            P_L1='             '
+            P_L2='             '
+            P_L3='   (\__/)    '
+            P_L4='   (T_T ) 🐛 '
+            P_L5='  c(")_(")   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+        9)
+            P_L1='             '
+            P_L2='   🔥       '
+            P_L3='   (\__/)    '
+            P_L4='   (ಠ_ಠ )    '
+            P_L5='   / / / /   '
+            P_L6=' [========]  '
+            P_L7='             '
+            ;;
+    esac
+
     # --- Interface Rendering ---
     tput cup 0 0
+    echo -e "${BOLD}${CYAN}    _   ___    __   ____             __  ${NC}"
+    echo -e "${BOLD}${CYAN}   / | / / |  / /  / __ \____ ______/ /_ ${NC}"
+    echo -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \\${NC}"
+    echo -e "${BOLD}${CYAN} / /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}"
+    echo -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}"
+    echo ""
     echo -e "${BOLD}${YELLOW}$(_ '=== SYSTEM MONITORING DASHBOARD ===')${NC}"
     echo -e "${CYAN}$(_ 'Motherboard:')${NC} $MB_INFO"
     
@@ -164,6 +289,14 @@ while true; do
         ((idx++))
     done <<< "$RAM_HW_LIST"
 
+    echo "----------------------------------------------------------------"
+    echo -e "${BOLD}${WHITE}${P_L1}${NC}"
+    echo -e "${BOLD}${WHITE}${P_L2}${NC}"
+    echo -e "${BOLD}${YELLOW}${P_L3}${NC}"
+    echo -e "${BOLD}${WHITE}${P_L4}${NC}"
+    echo -e "${BOLD}${WHITE}${P_L5}${NC}"
+    echo -e "${BOLD}${WHITE}${P_L6}${NC}"
+    echo -e "${BOLD}${YELLOW}${P_L7}${NC}"
     echo "----------------------------------------------------------------"
     echo -e "${YELLOW}$(_ 'Press [CTRL+C] to exit monitoring')${NC}"
     tput ed
