@@ -70,7 +70,7 @@ fi
 GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; RED='\033[0;31m'; PURPLE='\033[0;35m'; BOLD='\033[1m'; WHITE='\033[1;37m'; NC='\033[0m'
 
 # 1. Static hardware information collection
-CPU_MODEL=$(lscpu | grep "Model name" | sed 's/Model name:[[:space:]]*//' | xargs)
+CPU_MODEL=$(lscpu | grep "Model name" | sed 's/Model name:[[:space:]]*//' | xargs | fold -s -w 55)
 # Fix GPU model capture: ensure the header row is not captured
 GPU_MODEL=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 MB_INFO=$(dmidecode -t baseboard | grep -E "Manufacturer|Product Name" | awk -F: '{print $2}' | xargs)
@@ -86,29 +86,8 @@ RAM_HW_LIST=$(sudo dmidecode -t memory | awk '
         }
     }' | sed 's/Manufacturer: //g; s/Size: //g; s/Configured Memory Speed: //g')
 
-# Clear screen before animation
+# Clear screen
 clear
-
-# Tech-style Startup Animation
-echo -e "${CYAN}Initializing Neural Link...${NC}"
-for i in {1..3}; do
-    echo -n -e "${BOLD}${CYAN}   _   ___    __   ____             __  ${NC}\r"
-    sleep 0.1
-    echo -n -e "${BOLD}${YELLOW}  / | / / |  / /  / __ \____ ______/ /_ ${NC}\r"
-    sleep 0.1
-    echo -n -e "${BOLD}${CYAN}  /  |/ /| | / /  / / / / __ \`/ ___/ __ \x5C${NC}\r"
-    sleep 0.1
-    echo -n -e "${BOLD}${YELLOW}/ /|  / | |/ /  / /_/ / /_/ (__  ) / / /${NC}\r"
-    sleep 0.1
-    echo -n -e "${BOLD}${CYAN}/_/ |_/  |___/  /_____/\__,_/____/_/ /_/ ${NC}\r"
-    sleep 0.1
-done
-echo ""
-echo -e "${GREEN}[SYSTEM] Firmware Loaded.${NC}"
-echo -e "${GREEN}[SYSTEM] Core Telemetry Active.${NC}"
-sleep 0.5
-clear
-
 prev_total=(); prev_idle=()
 prev_all_total=0; prev_all_idle=0
 
@@ -242,8 +221,11 @@ while true; do
     
     # --- Section 1: CPU Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'CPU SECTION') ]${NC} -------------------------------------------${CE}"
-    echo -e " $(_ 'Model:'): ${CYAN}$CPU_MODEL${NC}${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'CPU') ]${NC} -------------------------------------------${CE}"
+    echo -e " $(_ 'Model:'):${CE}"
+    while IFS= read -r c_line; do
+        [[ -n "$c_line" ]] && echo -e "   ${CYAN}${c_line}${NC}${CE}"
+    done <<< "$CPU_MODEL"
     
     all_cpu=$(grep '^cpu ' /proc/stat)
     read -ra all_stats <<< "$all_cpu"
@@ -272,7 +254,7 @@ while true; do
 
     # --- Section 2: GPU Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'GPU SECTION') ]${NC} -------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'GPU') ]${NC} -------------------------------------------${CE}"
     echo -e " $(_ 'Model:'): ${CYAN}$GPU_MODEL${NC}${CE}"
     vram_p_val=$(echo "scale=1; if ($vram_t > 0) 100 * $vram_u / $vram_t else 0" | bc 2>/dev/null || echo "0.0")
     printf " $(_ 'Power:'): ${YELLOW}%6s W${NC} | $(_ 'Temp:'): ${RED}%s°C${NC} | $(_ 'Clock:'): ${YELLOW}%s MHz${NC}${CE}\n" "$gpu_w" "$gpu_t" "$vram_s"
@@ -281,7 +263,7 @@ while true; do
 
     # --- Section 3: RAM Section ---
     echo -e "${CE}"
-    echo -e "${BOLD}${WHITE}[ $(_ 'RAM SECTION') ]${NC} -------------------------------------------${CE}"
+    echo -e "${BOLD}${WHITE}[ $(_ 'RAM') ]${NC} -------------------------------------------${CE}"
     ram_p_clean=$(echo "scale=1; if ($ram_t > 0) 100 * $ram_u / $ram_t else 0" | bc 2>/dev/null || echo "0.0")
     printf " $(_ 'Usage Total :') ${CYAN}%s / %s MB (${ram_p_clean}%%)${NC}${CE}\n" "$ram_u" "$ram_t"
     echo -e " $(_ 'Hardware Info:')${CE}"
